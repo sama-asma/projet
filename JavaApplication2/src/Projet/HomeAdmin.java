@@ -34,12 +34,12 @@ public class HomeAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,28 +52,33 @@ public class HomeAdmin extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel1.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/log-out.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogOut.setBackground(new java.awt.Color(204, 171, 216));
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/log-out.png"))); // NOI18N
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                btnLogOutMouseClicked(evt);
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/home (2).png"))); // NOI18N
+        btnHome.setBackground(new java.awt.Color(204, 171, 216));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/home (2).png"))); // NOI18N
 
-        jLabel4.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/account.png"))); // NOI18N
+        btnAccount.setBackground(new java.awt.Color(204, 171, 216));
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/account.png"))); // NOI18N
 
         jLabel5.setBackground(new java.awt.Color(204, 171, 216));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/message (1).png"))); // NOI18N
 
-        jLabel6.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/bell.png"))); // NOI18N
+        btnNot.setBackground(new java.awt.Color(204, 171, 216));
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/bell.png"))); // NOI18N
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel7.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
+        btnSet.setBackground(new java.awt.Color(204, 171, 216));
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -82,29 +87,29 @@ public class HomeAdmin extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnNot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(jLabel3)
+                .addComponent(btnHome)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel4)
+                .addComponent(btnAccount)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel5)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel6)
+                .addComponent(btnNot)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel7)
+                .addComponent(btnSet)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(btnLogOut)
                 .addGap(27, 27, 27))
         );
 
@@ -166,9 +171,14 @@ public class HomeAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_btnLogOutMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnNotMouseClicked
 
     /**
      * @param args the command line arguments
@@ -206,13 +216,13 @@ public class HomeAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JLabel btnSet;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

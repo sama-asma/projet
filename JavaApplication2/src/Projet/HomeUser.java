@@ -6,6 +6,9 @@ package Projet;
 
 import chart.BarChartPanel;
 import java.awt.BorderLayout;
+import java.awt.Point;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -49,15 +52,15 @@ public class HomeUser extends javax.swing.JFrame {
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
+        btnBill = new javax.swing.JLabel();
+        btnMed = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        hello = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableData = new javax.swing.JTable();
@@ -69,43 +72,58 @@ public class HomeUser extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel13.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/log-out.png"))); // NOI18N
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogOut.setBackground(new java.awt.Color(204, 171, 216));
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/log-out.png"))); // NOI18N
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel13MouseClicked(evt);
+                btnLogOutMouseClicked(evt);
             }
         });
 
-        jLabel14.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/home (2).png"))); // NOI18N
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnHome.setBackground(new java.awt.Color(204, 171, 216));
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/home (2).png"))); // NOI18N
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel14MouseClicked(evt);
+                btnHomeMouseClicked(evt);
             }
         });
 
-        jLabel15.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/account.png"))); // NOI18N
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.setBackground(new java.awt.Color(204, 171, 216));
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/account.png"))); // NOI18N
+        btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
-        jLabel16.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/page.png"))); // NOI18N
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.setBackground(new java.awt.Color(204, 171, 216));
+        btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/page.png"))); // NOI18N
+        btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel17.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/pill (1).png"))); // NOI18N
-        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.setBackground(new java.awt.Color(204, 171, 216));
+        btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/pill (1).png"))); // NOI18N
+        btnMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMedMouseClicked(evt);
+            }
+        });
 
-        jLabel18.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/bell.png"))); // NOI18N
-        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.setBackground(new java.awt.Color(204, 171, 216));
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/bell.png"))); // NOI18N
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel19.setBackground(new java.awt.Color(204, 171, 216));
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
-        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.setBackground(new java.awt.Color(204, 171, 216));
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -114,32 +132,32 @@ public class HomeUser extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(jLabel14)
+                .addComponent(btnHome)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel15)
+                .addComponent(btnAccount)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel16)
+                .addComponent(btnBill)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel17)
+                .addComponent(btnMed)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel18)
+                .addComponent(btnNot)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel19)
+                .addComponent(btnSet)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jLabel13)
+                .addComponent(btnLogOut)
                 .addGap(27, 27, 27))
         );
 
@@ -160,9 +178,9 @@ public class HomeUser extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 730, 190));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Hello,");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, 80, 30));
+        hello.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        hello.setText("Hello,");
+        getContentPane().add(hello, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, 80, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -212,14 +230,40 @@ public class HomeUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel13MouseClicked
+       int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+       if(choix==0) {
+           dispose();
+       }
+    }//GEN-LAST:event_btnLogOutMouseClicked
 
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        // TODO add your handling code here:
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+       
+    }//GEN-LAST:event_btnHomeMouseClicked
 
-    }//GEN-LAST:event_jLabel14MouseClicked
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+       dispose();
+       Sante frame = new Sante();
+       frame.setVisible(true);
+
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
+       dispose();
+       Medication frame = new Medication();
+       frame.setVisible(true);
+    }//GEN-LAST:event_btnMedMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+         // Créez un JDialog pour afficher la liste des notifications
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(250, 200);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
+    }//GEN-LAST:event_btnNotMouseClicked
 
     /**
      * @param args the command line arguments
@@ -257,14 +301,14 @@ public class HomeUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnBill;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnMed;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JLabel btnSet;
+    private javax.swing.JLabel hello;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
