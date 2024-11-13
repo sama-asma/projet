@@ -4,8 +4,12 @@ package Projet;
 import java.awt.Color;
 import java.awt.Font;
 import static java.awt.font.TextAttribute.FONT;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.JTableHeader;
 import raven.cell.TableActionCellRender;
+import sante.Main;
+import sante.Settings;
 
 /** 
  *
@@ -36,7 +40,6 @@ public class HomeAdmin extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         btnLogOut = new javax.swing.JLabel();
         btnHome = new javax.swing.JLabel();
-        btnAccount = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnNot = new javax.swing.JLabel();
         btnSet = new javax.swing.JLabel();
@@ -54,6 +57,7 @@ public class HomeAdmin extends javax.swing.JFrame {
 
         btnLogOut.setBackground(new java.awt.Color(204, 171, 216));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/log-out.png"))); // NOI18N
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogOutMouseClicked(evt);
@@ -62,15 +66,15 @@ public class HomeAdmin extends javax.swing.JFrame {
 
         btnHome.setBackground(new java.awt.Color(204, 171, 216));
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/home (2).png"))); // NOI18N
-
-        btnAccount.setBackground(new java.awt.Color(204, 171, 216));
-        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/account.png"))); // NOI18N
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setBackground(new java.awt.Color(204, 171, 216));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/message (1).png"))); // NOI18N
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnNot.setBackground(new java.awt.Color(204, 171, 216));
         btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/bell.png"))); // NOI18N
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnNotMouseClicked(evt);
@@ -79,6 +83,12 @@ public class HomeAdmin extends javax.swing.JFrame {
 
         btnSet.setBackground(new java.awt.Color(204, 171, 216));
         btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSetMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -88,7 +98,6 @@ public class HomeAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(btnAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -98,17 +107,15 @@ public class HomeAdmin extends javax.swing.JFrame {
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(117, 117, 117)
                 .addComponent(btnHome)
-                .addGap(25, 25, 25)
-                .addComponent(btnAccount)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel5)
                 .addGap(25, 25, 25)
                 .addComponent(btnNot)
                 .addGap(25, 25, 25)
                 .addComponent(btnSet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(27, 27, 27))
         );
@@ -172,13 +179,29 @@ public class HomeAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
-        // TODO add your handling code here:
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
     }//GEN-LAST:event_btnLogOutMouseClicked
 
     private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
-        // TODO add your handling code here:
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(260, 210);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
         
     }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSetMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnSetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -216,7 +239,6 @@ public class HomeAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnAccount;
     private javax.swing.JLabel btnHome;
     private javax.swing.JLabel btnLogOut;
     private javax.swing.JLabel btnNot;

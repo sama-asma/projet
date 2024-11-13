@@ -6,6 +6,10 @@ package Projet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import sante.HealthCheck;
+import sante.Main;
+import sante.Settings;
 
 /**
  *
@@ -198,6 +202,11 @@ public class Sante extends javax.swing.JFrame {
         btnBill.setBackground(new java.awt.Color(204, 171, 216));
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/page.png"))); // NOI18N
         btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
         btnMed.setBackground(new java.awt.Color(204, 171, 216));
         btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/pill (1).png"))); // NOI18N
@@ -220,6 +229,11 @@ public class Sante extends javax.swing.JFrame {
         btnSet.setBackground(new java.awt.Color(204, 171, 216));
         btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/gear.png"))); // NOI18N
         btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSetMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -348,7 +362,12 @@ public class Sante extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
-        // TODO add your handling code here:
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
     }//GEN-LAST:event_btnLogOutMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -375,11 +394,23 @@ public class Sante extends javax.swing.JFrame {
         // TODO add your handling code here:
         Notification notification = new Notification();
         JDialog notificationDialog = new JDialog(this, "Notifications", true);
-        notificationDialog.setSize(250, 200);
+        notificationDialog.setSize(260, 210);
         notificationDialog.setLocationRelativeTo(this);
         notificationDialog.add(notification);
         notificationDialog.setVisible(true);
     }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSetMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnSetMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+         dispose();
+        HealthCheck frame = new HealthCheck();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnBillMouseClicked
 
     /**
      * @param args the command line arguments
