@@ -4,6 +4,12 @@
  */
 package sante;
 
+import Projet.HomeUser;
+import Projet.Medication;
+import Projet.Notification;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MAROUA
@@ -27,18 +33,19 @@ public class Support extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
+        btnBill = new javax.swing.JLabel();
+        btnMed = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        retour = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -50,30 +57,72 @@ public class Support extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
-        jLabel5.setText("jLabel5");
+        btnHome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
+        btnHome.setText("jLabel5");
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
-        jLabel6.setText("jLabel5");
+        btnAccount.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
+        btnAccount.setText("jLabel5");
+        btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
-        jLabel7.setText("jLabel5");
+        btnBill.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
+        btnBill.setText("jLabel5");
+        btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
-        jLabel8.setText("jLabel5");
+        btnMed.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
+        btnMed.setText("jLabel5");
+        btnMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMedMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
-        jLabel9.setText("jLabel5");
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
+        btnNot.setText("jLabel5");
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
-        jLabel10.setText("jLabel5");
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
+        btnSet.setText("jLabel5");
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSetMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
-        jLabel11.setText("jLabel5");
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
+        btnLogOut.setText("jLabel5");
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -82,33 +131,33 @@ public class Support extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 530));
@@ -120,11 +169,20 @@ public class Support extends javax.swing.JFrame {
         jLabel2.setText("Support");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Do you nedd any  help ? ");
+        jLabel3.setText("Do you need any  help ? ");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 255));
         jLabel4.setText("Tell us about your problem we're here to help.");
+
+        retour.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
+        retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/Vector (1).png"))); // NOI18N
+        retour.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        retour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                retourMouseClicked(evt);
+            }
+        });
 
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
@@ -154,14 +212,16 @@ public class Support extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(retour)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(67, 67, 67)
-                                .addComponent(jLabel3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(jLabel4)))
+                                .addComponent(jLabel3)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -177,7 +237,9 @@ public class Support extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(retour))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -186,23 +248,78 @@ public class Support extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(14, 14, 14))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 410, 410));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 410, 400));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/back-health (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -20, 840, 680));
 
-        setSize(new java.awt.Dimension(814, 518));
+        setSize(new java.awt.Dimension(812, 499));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        dispose();
+        HomeUser frame = new HomeUser();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+        dispose();
+        Projet.Sante frame = new Projet.Sante();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
+        dispose();
+        Medication frame = new Medication();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnMedMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+        dispose();
+        HealthCheck frame = new HealthCheck();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnBillMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+          // Créez un JDialog pour afficher la liste des notifications
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(260, 210);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
+    }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSetMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnSetMouseClicked
+
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
+    }//GEN-LAST:event_btnLogOutMouseClicked
+
+    private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_retourMouseClicked
 
     /**
      * @param args the command line arguments
@@ -240,22 +357,23 @@ public class Support extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnBill;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnMed;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JLabel btnSet;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel retour;
     // End of variables declaration//GEN-END:variables
 }

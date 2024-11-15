@@ -4,6 +4,12 @@
  */
 package sante;
 
+import Projet.HomeUser;
+import Projet.Medication;
+import Projet.Notification;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MAROUA
@@ -27,13 +33,13 @@ public class HealthCheck extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel8 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
+        btnBill = new javax.swing.JLabel();
+        btnMed = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -80,26 +86,68 @@ public class HealthCheck extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
-        jLabel30.setText("jLabel30");
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
+        btnHome.setText("jLabel30");
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
-        jLabel31.setText("jLabel30");
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
+        btnAccount.setText("jLabel30");
+        btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
-        jLabel32.setText("jLabel30");
+        btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
+        btnBill.setText("jLabel30");
+        btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
-        jLabel33.setText("jLabel30");
+        btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
+        btnMed.setText("jLabel30");
+        btnMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMedMouseClicked(evt);
+            }
+        });
 
-        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
-        jLabel34.setText("jLabel30");
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
+        btnNot.setText("jLabel30");
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
-        jLabel35.setText("jLabel30");
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
+        btnSet.setText("jLabel30");
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSetMouseClicked(evt);
+            }
+        });
 
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
-        jLabel36.setText("jLabel30");
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
+        btnLogOut.setText("jLabel30");
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -108,33 +156,33 @@ public class HealthCheck extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel32)
-                .addGap(52, 52, 52)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(45, 45, 45)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnBill)
+                .addGap(40, 40, 40)
+                .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 580));
@@ -510,13 +558,60 @@ public class HealthCheck extends javax.swing.JFrame {
         jLabel2.setText("Health Check-Up :");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 30));
 
-        setSize(new java.awt.Dimension(814, 583));
+        setSize(new java.awt.Dimension(814, 553));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        dispose();
+        HomeUser frame = new HomeUser();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+        dispose();
+        Projet.Sante frame = new Projet.Sante();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
+       dispose();
+       Medication frame = new Medication();
+       frame.setVisible(true);
+    }//GEN-LAST:event_btnMedMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+        
+    }//GEN-LAST:event_btnBillMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+         // Créez un JDialog pour afficher la liste des notifications
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(260, 210);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
+    }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSetMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnSetMouseClicked
+
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+         int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
+    }//GEN-LAST:event_btnLogOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -554,6 +649,13 @@ public class HealthCheck extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnBill;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnMed;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JLabel btnSet;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -578,13 +680,6 @@ public class HealthCheck extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

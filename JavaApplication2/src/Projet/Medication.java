@@ -21,6 +21,7 @@ public class Medication extends javax.swing.JFrame {
      */
     public Medication() {
         initComponents();
+        setLocationRelativeTo(null); //cantrer frame
     }
 
     /**
@@ -275,7 +276,7 @@ public class Medication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
-        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
        if(choix==0) {
            dispose();
            Main frame = new Main();

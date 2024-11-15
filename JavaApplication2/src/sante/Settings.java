@@ -4,6 +4,13 @@
  */
 package sante;
 
+import Projet.HomeUser;
+import Projet.Medication;
+import Projet.Notification;
+import java.awt.Color;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MAROUA
@@ -27,13 +34,13 @@ public class Settings extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
+        btnBill = new javax.swing.JLabel();
+        btnMed = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -43,7 +50,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnNotif = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,26 +59,63 @@ public class Settings extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
-        jLabel10.setText("jLabel10");
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
+        btnHome.setText("jLabel10");
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
-        jLabel11.setText("jLabel10");
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
+        btnAccount.setText("jLabel10");
+        btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
-        jLabel12.setText("jLabel10");
+        btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
+        btnBill.setText("jLabel10");
+        btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
-        jLabel13.setText("jLabel10");
+        btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
+        btnMed.setText("jLabel10");
+        btnMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMedMouseClicked(evt);
+            }
+        });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
-        jLabel14.setText("jLabel10");
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
+        btnNot.setText("jLabel10");
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
-        jLabel15.setText("jLabel10");
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
+        btnSet.setText("jLabel10");
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
-        jLabel16.setText("jLabel10");
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
+        btnLogOut.setText("jLabel10");
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -80,32 +124,32 @@ public class Settings extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
 
@@ -115,6 +159,7 @@ public class Settings extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/Vector (1).png"))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Settings");
@@ -129,19 +174,37 @@ public class Settings extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Account");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/support.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Support");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
-        jToggleButton1.setBackground(new java.awt.Color(192, 86, 231));
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jToggleButton1.setText("ON");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNotif.setBackground(new java.awt.Color(192, 86, 231));
+        btnNotif.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        btnNotif.setText("ON");
+        btnNotif.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNotif.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotifMouseClicked(evt);
+            }
+        });
+        btnNotif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnNotifActionPerformed(evt);
             }
         });
 
@@ -170,7 +233,7 @@ public class Settings extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jToggleButton1)))
+                                        .addComponent(btnNotif)))
                                 .addGap(174, 174, 174))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +255,7 @@ public class Settings extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,9 +272,74 @@ public class Settings extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotifActionPerformed
+       if(btnNotif.getText().equals("ON")){
+        btnNotif.setText("OFF");
+        btnNotif.setBackground(Color.white);
+       }
+       else{
+        btnNotif.setText("ON");  
+        btnNotif.setBackground(new Color(192,86,231));}
+    }//GEN-LAST:event_btnNotifActionPerformed
+
+    private void btnNotifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotifMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnNotifMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        dispose();
+        Account frame = new Account();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        dispose();
+        Support frame = new Support();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        dispose();
+        HomeUser frame = new HomeUser();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+        dispose();
+        Projet.Sante frame = new Projet.Sante();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
+       dispose();
+       Medication frame = new Medication();
+       frame.setVisible(true);
+    }//GEN-LAST:event_btnMedMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+        dispose();
+        HealthCheck frame = new HealthCheck();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnBillMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+         // Créez un JDialog pour afficher la liste des notifications
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(260, 210);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
+    }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
+    }//GEN-LAST:event_btnLogOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,14 +377,15 @@ public class Settings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnBill;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnMed;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JToggleButton btnNotif;
+    private javax.swing.JLabel btnSet;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -267,6 +396,5 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

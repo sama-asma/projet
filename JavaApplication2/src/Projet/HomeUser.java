@@ -25,6 +25,7 @@ public class HomeUser extends javax.swing.JFrame {
      */
     public HomeUser() {
         initComponents();
+        setLocationRelativeTo(null);
         BarChartPanel chartPanel = new BarChartPanel();
         jPanel1.setLayout(new BorderLayout()); // Permet à chartPanel de s'adapter à jPanel1
         jPanel1.add(chartPanel);
@@ -67,6 +68,7 @@ public class HomeUser extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableData = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -239,13 +241,14 @@ public class HomeUser extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 730, 190));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 10, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
         // TODO add your handling code here:
-       int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+       int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
        if(choix==0) {
            dispose();
            Main frame = new Main();
@@ -336,6 +339,7 @@ public class HomeUser extends javax.swing.JFrame {
     private javax.swing.JLabel btnNot;
     private javax.swing.JLabel btnSet;
     private javax.swing.JLabel hello;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

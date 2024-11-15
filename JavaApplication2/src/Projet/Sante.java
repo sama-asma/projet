@@ -22,8 +22,7 @@ public class Sante extends javax.swing.JFrame {
      */
     public Sante() {
         initComponents();
-        //icon
-        //txtWeight.setPrefixIcon(new ImageIcon());
+        setLocationRelativeTo(null); //cantrer frame
     }
 
     /**
@@ -362,7 +361,7 @@ public class Sante extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
-        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.INFORMATION_MESSAGE);
+        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
        if(choix==0) {
            dispose();
            Main frame = new Main();

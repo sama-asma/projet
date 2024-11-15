@@ -4,6 +4,13 @@
  */
 package sante;
 
+import Projet.HomeUser;
+import Projet.Medication;
+import Projet.Notification;
+import Projet.Sante;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MAROUA
@@ -15,6 +22,7 @@ public class Account extends javax.swing.JFrame {
      */
     public Account() {
         initComponents();
+        setLocationRelativeTo(null); //cantrer frame
     }
 
     /**
@@ -27,13 +35,13 @@ public class Account extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        btnHome = new javax.swing.JLabel();
+        btnAccount = new javax.swing.JLabel();
+        btnBill = new javax.swing.JLabel();
+        btnMed = new javax.swing.JLabel();
+        btnNot = new javax.swing.JLabel();
+        btnSet = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -54,6 +62,7 @@ public class Account extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        retour = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,26 +71,68 @@ public class Account extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 171, 216));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
-        jLabel8.setText("jLabel8");
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/home (2).png"))); // NOI18N
+        btnHome.setText("jLabel8");
+        btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
-        jLabel9.setText("jLabel8");
+        btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/account.png"))); // NOI18N
+        btnAccount.setText("jLabel8");
+        btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
-        jLabel10.setText("jLabel8");
+        btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/page.png"))); // NOI18N
+        btnBill.setText("jLabel8");
+        btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
-        jLabel11.setText("jLabel8");
+        btnMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/pill (1).png"))); // NOI18N
+        btnMed.setText("jLabel8");
+        btnMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMedMouseClicked(evt);
+            }
+        });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
-        jLabel12.setText("jLabel8");
+        btnNot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/bell.png"))); // NOI18N
+        btnNot.setText("jLabel8");
+        btnNot.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNot.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotMouseClicked(evt);
+            }
+        });
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
-        jLabel13.setText("jLabel8");
+        btnSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/gear.png"))); // NOI18N
+        btnSet.setText("jLabel8");
+        btnSet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSetMouseClicked(evt);
+            }
+        });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
-        jLabel14.setText("jLabel8");
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/log-out.png"))); // NOI18N
+        btnLogOut.setText("jLabel8");
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,32 +141,32 @@ public class Account extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMed, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNot, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSet, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -237,6 +288,15 @@ public class Account extends javax.swing.JFrame {
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Cancel");
 
+        retour.setFont(new java.awt.Font("Segoe UI", 2, 8)); // NOI18N
+        retour.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icone/Vector (1).png"))); // NOI18N
+        retour.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        retour.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                retourMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -267,7 +327,9 @@ public class Account extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(17, 17, 17)
+                        .addComponent(retour, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -284,7 +346,9 @@ public class Account extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(retour))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
@@ -373,6 +437,61 @@ public class Account extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        dispose();
+        HomeUser frame = new HomeUser();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+        dispose();
+        Sante frame = new Sante();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+        dispose();
+        HealthCheck frame = new HealthCheck();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnBillMouseClicked
+
+    private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
+        dispose();
+        Medication frame = new Medication();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnMedMouseClicked
+
+    private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
+          // Créez un JDialog pour afficher la liste des notifications
+        Notification notification = new Notification();
+        JDialog notificationDialog = new JDialog(this, "Notifications", true);
+        notificationDialog.setSize(260, 210);
+        notificationDialog.setLocationRelativeTo(this);
+        notificationDialog.add(notification);
+        notificationDialog.setVisible(true);
+    }//GEN-LAST:event_btnNotMouseClicked
+
+    private void btnSetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSetMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnSetMouseClicked
+
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+       int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+       if(choix==0) {
+           dispose();
+           Main frame = new Main();
+           frame.setVisible(true);
+       }
+    }//GEN-LAST:event_btnLogOutMouseClicked
+
+    private void retourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retourMouseClicked
+        dispose();
+        Settings frame = new Settings();
+        frame.setVisible(true);
+    }//GEN-LAST:event_retourMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -409,6 +528,13 @@ public class Account extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnAccount;
+    private javax.swing.JLabel btnBill;
+    private javax.swing.JLabel btnHome;
+    private javax.swing.JLabel btnLogOut;
+    private javax.swing.JLabel btnMed;
+    private javax.swing.JLabel btnNot;
+    private javax.swing.JLabel btnSet;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -417,19 +543,12 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -438,5 +557,6 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel retour;
     // End of variables declaration//GEN-END:variables
 }
