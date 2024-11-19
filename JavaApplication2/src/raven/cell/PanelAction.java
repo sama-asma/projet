@@ -4,6 +4,18 @@
  */
 package raven.cell;
 
+import Projet.HomeAdmin;
+import db.DataBaseConnection;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author asma8
@@ -15,8 +27,30 @@ public class PanelAction extends javax.swing.JPanel {
      */
     public PanelAction() {
         initComponents();
+
     }
 
+    
+    public void initEvent(TableActionEvent event, int row){
+        edit.addActionListener(new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent ae){
+            event.onEdit(row);
+        }
+    });
+       delete.addActionListener(new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent ae){
+            event.onDelete(row);
+        }
+    });
+        view.addActionListener(new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent ae){
+            event.onView(row);
+        }
+    });
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,28 +60,30 @@ public class PanelAction extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        actionButton1 = new raven.cell.ActionButton();
-        actionButton2 = new raven.cell.ActionButton();
-        actionButton3 = new raven.cell.ActionButton();
+        view = new raven.cell.ActionButton();
+        delete = new raven.cell.ActionButton();
+        edit = new raven.cell.ActionButton();
 
-        actionButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/view (1).png"))); // NOI18N
-        actionButton1.addActionListener(new java.awt.event.ActionListener() {
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/view (1).png"))); // NOI18N
+        view.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionButton1ActionPerformed(evt);
+                viewActionPerformed(evt);
             }
         });
 
-        actionButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/delete (1).png"))); // NOI18N
-        actionButton2.addActionListener(new java.awt.event.ActionListener() {
+        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/delete (1).png"))); // NOI18N
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionButton2ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
 
-        actionButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/edit (1).png"))); // NOI18N
-        actionButton3.addActionListener(new java.awt.event.ActionListener() {
+        edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/raven/cell/edit (1).png"))); // NOI18N
+        edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionButton3ActionPerformed(evt);
+                editActionPerformed(evt);
             }
         });
 
@@ -57,11 +93,11 @@ public class PanelAction extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(actionButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actionButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actionButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,29 +105,30 @@ public class PanelAction extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(actionButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actionButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actionButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void actionButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButton1ActionPerformed
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_actionButton1ActionPerformed
 
-    private void actionButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_actionButton2ActionPerformed
+    }//GEN-LAST:event_viewActionPerformed
 
-    private void actionButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButton3ActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        
+    }//GEN-LAST:event_deleteActionPerformed
+
+    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_actionButton3ActionPerformed
+    }//GEN-LAST:event_editActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private raven.cell.ActionButton actionButton1;
-    private raven.cell.ActionButton actionButton2;
-    private raven.cell.ActionButton actionButton3;
+    private raven.cell.ActionButton delete;
+    private raven.cell.ActionButton edit;
+    private raven.cell.ActionButton view;
     // End of variables declaration//GEN-END:variables
 }

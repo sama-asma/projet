@@ -5,15 +5,22 @@
 package Projet;
 
 import chart.BarChartPanel;
+import db.DataBaseConnection;
+import db.Session;
 import java.awt.BorderLayout;
 import java.awt.Point;
+import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sante.HealthCheck;
 import sante.Main;
 import sante.Settings;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 /**
  *
  * @author asma8
@@ -26,24 +33,97 @@ public class HomeUser extends javax.swing.JFrame {
     public HomeUser() {
         initComponents();
         setLocationRelativeTo(null);
+        hello.setText("Hello," + Session.getUsername() + ".");
         BarChartPanel chartPanel = new BarChartPanel();
         jPanel1.setLayout(new BorderLayout()); // Permet à chartPanel de s'adapter à jPanel1
         jPanel1.add(chartPanel);
-         String[] columnNames = {"Days", "Weight", "Temperature", "Blood Pressure", "Blood Sugar"};
+        updateTableFromDatabase(new Date());
+        dateChose.addPropertyChangeListener("date",evt -> {
+            Date selectDate = (Date) evt.getNewValue();
+            updateTableFromDatabase(selectDate);
+        });
         
-        // Données d'exemple pour le tableau
-        Object[][] data = {
-            {"Saturday", 70, 36.5, "120/80", 90},
-            {"Sunday", 71, 36.6, "122/82", 92},
-            {"Monday", 72, 36.7, "118/78", 88},
-            {"Tuesday", 73, 36.5, "121/80", 85},
-            {"Wednesday", 70, 36.4, "119/79", 89},
-            {"Thursday", 69, 36.6, "122/80", 91},
-            {"Friday", 68, 36.7, "117/76", 87}
-        };
-        tableData.setModel(new JTable(data,columnNames).getModel());
-      
-       
+
+    }
+
+    public  void  updateTableFromDatabase(Date selectedDate) {
+        String[] columnNames = {"Days", "Weight", "Temperature", "Blood Pressure", "Blood Sugar"};
+        Object[][] data = new Object[7][5]; // 7 jours, 5 colonnes
+
+        // Requête SQL pour récupérer les données des 7 derniers jours
+        String query = """
+        SELECT DAYOFWEEK(date) AS day_of_week, weight, temperature, blood_pressure, blood_sugar 
+        FROM infohealth 
+        WHERE id_user = ? 
+          AND date BETWEEN DATE_SUB(?, INTERVAL 6 DAY) AND ?
+        ORDER BY date ASC
+    """;
+
+        try {
+            Connection conn = DataBaseConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, Session.getUserId()); // Utilisateur connecté
+            stmt.setDate(2, new java.sql.Date(selectedDate.getTime())); // Date de début (7 jours avant)
+            stmt.setDate(3, new java.sql.Date(selectedDate.getTime())); // Date de fin (date sélectionnée)
+
+            ResultSet rs = stmt.executeQuery();
+
+            // Tableau pour marquer les jours présents
+            boolean[] dayPresent = new boolean[7];
+
+            // Remplir les données depuis la base de données
+            while (rs.next()) {
+                int dayOfWeek = rs.getInt("day_of_week"); // 1 = dimanche, 7 = samedi
+                int dayIndex = (dayOfWeek + 5) % 7; // Remap pour 0 = samedi, 6 = vendredi
+
+                dayPresent[dayIndex] = true;
+                data[dayIndex][0] = getDayName(dayIndex + 1); // Nom du jour
+                data[dayIndex][1] = rs.getFloat("weight");
+                data[dayIndex][2] = rs.getFloat("temperature");
+                data[dayIndex][3] = rs.getString("blood_pressure") != null ? rs.getString("blood_pressure") : "N/A";
+                data[dayIndex][4] = rs.getObject("blood_sugar") != null ? rs.getInt("blood_sugar") : "N/A";
+            }
+
+            // Remplir les jours manquants avec des valeurs par défaut
+            for (int i = 0; i < dayPresent.length; i++) {
+                if (!dayPresent[i]) {
+                    data[i][0] = getDayName(i + 1);
+                    data[i][1] = "N/A"; // Valeurs par défaut
+                    data[i][2] = "N/A";
+                    data[i][3] = "N/A";
+                    data[i][4] = "N/A";
+                }
+            }
+
+            // Mettre à jour le modèle de la table
+            tableData.setModel(new DefaultTableModel(data, columnNames));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error loading data from database: " + e.getMessage());
+        }
+    }
+
+// Méthode pour obtenir le nom du jour
+    private  String getDayName(int dayOfWeek) {
+        switch (dayOfWeek) {
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+            case 7:
+                return "Sunday";
+            default:
+                return "Unkown";
+        }
     }
 
     /**
@@ -68,7 +148,7 @@ public class HomeUser extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableData = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateChose = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -195,7 +275,7 @@ public class HomeUser extends javax.swing.JFrame {
 
         hello.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         hello.setText("Hello,");
-        getContentPane().add(hello, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, 80, 30));
+        getContentPane().add(hello, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, 290, 30));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -241,40 +321,40 @@ public class HomeUser extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 730, 190));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 10, 140, -1));
+        getContentPane().add(dateChose, new org.netbeans.lib.awtextra.AbsoluteConstraints(645, 10, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
         // TODO add your handling code here:
-       int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-       if(choix==0) {
-           dispose();
-           Main frame = new Main();
-           frame.setVisible(true);
-       }
+        int choix = JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choix == 0) {
+            dispose();
+            Main frame = new Main();
+            frame.setVisible(true);
+        }
     }//GEN-LAST:event_btnLogOutMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
-       
+
     }//GEN-LAST:event_btnHomeMouseClicked
 
     private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
-       dispose();
-       Sante frame = new Sante();
-       frame.setVisible(true);
+        dispose();
+        Sante frame = new Sante();
+        frame.setVisible(true);
 
     }//GEN-LAST:event_btnAccountMouseClicked
 
     private void btnMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMedMouseClicked
-       dispose();
-       Medication frame = new Medication();
-       frame.setVisible(true);
+        dispose();
+        Medication frame = new Medication();
+        frame.setVisible(true);
     }//GEN-LAST:event_btnMedMouseClicked
 
     private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
-         // Créez un JDialog pour afficher la liste des notifications
+        // Créez un JDialog pour afficher la liste des notifications
         Notification notification = new Notification();
         JDialog notificationDialog = new JDialog(this, "Notifications", true);
         notificationDialog.setSize(260, 210);
@@ -338,8 +418,8 @@ public class HomeUser extends javax.swing.JFrame {
     private javax.swing.JLabel btnMed;
     private javax.swing.JLabel btnNot;
     private javax.swing.JLabel btnSet;
+    public static com.toedter.calendar.JDateChooser dateChose;
     private javax.swing.JLabel hello;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

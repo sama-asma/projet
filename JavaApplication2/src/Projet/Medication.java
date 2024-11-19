@@ -4,11 +4,30 @@
  */
 package Projet;
 
+import db.DataBaseConnection;
+import db.Session;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import sante.HealthCheck;
 import sante.Main;
 import sante.Settings;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -22,6 +41,92 @@ public class Medication extends javax.swing.JFrame {
     public Medication() {
         initComponents();
         setLocationRelativeTo(null); //cantrer frame
+        jScrollPane1.setVisible(false);
+
+        loadMedications();
+
+    }
+
+    public void loadMedications() {
+        String[] columnNames = {"Name", "Amount", "Time", "Delete"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        String query = "SELECT id_med, name, amount, time FROM medicament WHERE id_user = ? ORDER BY time ASC";
+        try {
+            Connection conn = DataBaseConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, Session.getUserId());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id_med");
+                String name = rs.getString("name");
+                int amount = rs.getInt("amount");
+                String time = rs.getString("time");
+
+                // Ajout des données au modèle
+                model.addRow(new Object[]{name, amount, time, id}); // Stocker l'ID dans la colonne "Delete"
+            }
+
+            medicationTable.setModel(model);
+            jScrollPane1.setVisible(true);
+
+            // Renderer pour afficher "Delete" dans la colonne
+            medicationTable.getColumn("Delete").setCellRenderer(new TableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    JLabel deleteLabel = new JLabel("Delete");
+                    deleteLabel.setForeground(Color.RED);
+                    deleteLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    return deleteLabel;
+                }
+            });
+
+            // Editor pour gérer les clics dans la colonne "Delete"
+            medicationTable.getColumn("Delete").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
+                @Override
+                public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+                    JLabel deleteLabel = new JLabel("Delete");
+                    deleteLabel.setForeground(Color.RED);
+                    deleteLabel.setToolTipText("Click to delete");
+
+                    // Gérer le clic sur le label
+                    deleteLabel.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            int id = (int) table.getValueAt(row, 3); // Récupérer l'ID de la ligne
+                            deleteMedication(id, model);
+                        }
+                    });
+
+                    return deleteLabel;
+                }
+            });
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error loading medications: " + e.getMessage());
+        }
+    }
+
+    private void deleteMedication(int medicationId, DefaultTableModel model) {
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this medication?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            String query = "DELETE FROM medicament WHERE id_med = ?";
+            try {
+                Connection conn = DataBaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setInt(1, medicationId);
+                stmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Medication deleted successfully!");
+
+                // Rafraîchir la table
+                loadMedications();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error deleting medication: " + e.getMessage());
+            }
+        }
     }
 
     /**
@@ -53,6 +158,8 @@ public class Medication extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         ajouter = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        medicationTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,6 +292,11 @@ public class Medication extends javax.swing.JFrame {
 
         ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Projet/plus-sign (1).png"))); // NOI18N
         ajouter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ajouter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ajouterMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -246,16 +358,35 @@ public class Medication extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel2.setText("My Medication:");
 
+        medicationTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "name", "amount", "time", "delete"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(medicationTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +395,9 @@ public class Medication extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 560, 350));
@@ -276,12 +409,12 @@ public class Medication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
-        int choix=JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-       if(choix==0) {
-           dispose();
-           Main frame = new Main();
-           frame.setVisible(true);
-       }
+        int choix = JOptionPane.showConfirmDialog(this, "are you sure to log out ?", "Log out", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choix == 0) {
+            dispose();
+            Main frame = new Main();
+            frame.setVisible(true);
+        }
     }//GEN-LAST:event_btnLogOutMouseClicked
 
     private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
@@ -295,9 +428,9 @@ public class Medication extends javax.swing.JFrame {
     }//GEN-LAST:event_nameMedActionPerformed
 
     private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
-       dispose();
-       Sante frame = new Sante();
-       frame.setVisible(true);
+        dispose();
+        Sante frame = new Sante();
+        frame.setVisible(true);
     }//GEN-LAST:event_btnAccountMouseClicked
 
     private void btnNotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotMouseClicked
@@ -317,10 +450,38 @@ public class Medication extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSetMouseClicked
 
     private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
-         dispose();
+        dispose();
         HealthCheck frame = new HealthCheck();
         frame.setVisible(true);
     }//GEN-LAST:event_btnBillMouseClicked
+
+    private void ajouterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajouterMouseClicked
+
+        String query = "INSERT INTO medicament (name, amount, time, id_user) VALUES (?, ?, ?, ?)";
+        String name = nameMed.getText();
+        int amount = Integer.parseInt(amountMed.getText());
+        String time = notHour.getSelectedItem() + ":" + notMin.getSelectedItem() + ":00";
+        if (name.trim().isEmpty() && time.trim().isEmpty() && (amount < 0)) {
+            JOptionPane.showMessageDialog(this, "All field are required!");
+            return;
+        }
+        try {
+            Connection conn = DataBaseConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, name);
+            stmt.setInt(2, amount);
+            stmt.setString(3, time);
+            stmt.setInt(4, Session.getUserId()); // ID de l'utilisateur connecté
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                JOptionPane.showMessageDialog(this, "Medication added successfully!");
+                loadMedications();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error adding medication: " + e.getMessage());
+        }
+    }//GEN-LAST:event_ajouterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -373,6 +534,8 @@ public class Medication extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTable medicationTable;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel name;
     private javax.swing.JTextField nameMed;
